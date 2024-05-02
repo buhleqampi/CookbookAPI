@@ -6,8 +6,13 @@ const mongoose = require('mongoose');
 const cors = require("cors")
 
 mongoose.connect('mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook', {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error(err));
+
+app.use(cors());
 
 app.use(express.json());
 
