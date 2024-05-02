@@ -1,4 +1,4 @@
-const bookSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     userId: { type: String, required: true },
     username: { type: String, required: true },
     emailAddres: { type: String, required: true },

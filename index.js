@@ -1,23 +1,27 @@
-require("dotenv").config();
-
-const express = require("express");
-const app = express()
 const mongoose = require('mongoose');
-const cors = require("cors")
+const recipeRoutes = require("./routes/recipeRoutes");
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-mongoose.connect('mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook', {
-  useNewUrlParser: true
+// // Connect to MongoDB
+// mongoose.connect("mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB");
 });
 
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
+// Routes
+app.use("/recipes", recipeRoutes);
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Food Deli" });
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
-const PORT = process.env.PORT || 3000;
-app.listen(3000,()=>{
-    console.log(`server is running ${PORT}`)
-})

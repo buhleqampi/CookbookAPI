@@ -1,25 +1,11 @@
-module.exports = rs => {
-    const router = require("express").Router();
-    const controller =require('../controllers/user.controller')
+const express = require("express");
+const router = express.Router();
+const recipeController = require('../controllers/recipecontroller');
 
-    // Add recipe
-    router.post('/signup', controller.create) 
+// Route for creating a recipe
+router.post("/", recipeController.createRecipe);
 
-    // get all recipes
-    router.get('/', controller.getAll) 
+// Route for getting all recipes
+router.get("/", recipeController.getAllRecipes);
 
-    // get a recipe
-    router.get('/', controller.getAll) 
-
-    // Delete all recipes
-    router.delete('/', controller.deleteAll) 
-
-    // Update one recipe
-    router.put('/:id', controller.update)
-    
-    // Delte a recipe
-    router.delete('/:id', controller.deleteOne) 
-
-
-    rs.use('/v1/users', router);
-}
+module.exports = router;

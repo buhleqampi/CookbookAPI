@@ -1,102 +1,30 @@
-const db = require("../models")
-const User = db.user
+const Recipe = require("../models/recipeModel");
+const mongoose = require('mongoose');
 
-// Get all recipes
-exports.getAll = (req, res)=>{
+// Connect to MongoDB using provided URL
+mongoose.connect("mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
-    User.find()
-    .then(data=>{
-        res.send(data)
-        console.log(data)
-    })
-    .catch(error=>{
-        res.status(500).send("Could not find user", error)
-        console.log("Could not find user", error)
-    })
-}
-// Create a recipe
-exports.create = async (req, res)=>{
-    if(!req.body){
-        res.status(400).send("Cannot add without info")
-        return;
-    }
-    let results;
 
-    await fetch('https://randomuser.me/api/')
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(results=data.results[0].email)})
+// Controller for creating a recipe
+exports.createRecipe = async (req, res) => {
+  try {
+    const recipe = new Recipe(req.body);
+    await recipe.save();
+    res.status(201).send(recipe);
+  } catch (error) {
+    res.status(500).send({ message: "Could not create recipe", error: error.message });
+  }
+};
 
-    const user = new User ({
-        fname: req.body.fname,
-        email: results,
-        password: req.body.password
-    })
-    try{
-        user.save()
-        .then(user=>{
-            console.log(user)
-            res.send(user)
-        })
-        return
-    }catch (error){
-        res.status(500).send('Could not create new user')
-        console.log(`Some err occured : ${err.message}`)
-    }
-}
-
-// Clear All
-exports.deleteAll = (req, res)=>{
-
-    User.deleteMany()
-    .then(data=>{
-        res.send(data)
-        console.log(data)
-    })
-    .catch(error=>{
-        res.status(500).send("Could not delete all users",error)
-        console.log("Could not delete all", error)
-    })
-}
-
-// Delete a recipe
-exports.deleteOne = (req, res)=>{
-
-    const id = req.params.id
-
-    User.findByIdAndRemove(id, { useFindAndModify:false })
-    .then(data => {
-        if(!data) {
-            res.status(404).send({
-                msg: `Cannot delete User with id=${id}. Maybe it was not exit`
-            })
-
-        }else res.status(201).send({ msg:"User was deleted successfully"})
-    })
-    .catch(err => {
-        res.status(500).send({ msg: `Error deleting User with id=${id}, Error: ${err}`})
-    })
-}
-
-// Update a recipe
-exports.update = (req, res)=>{
-    if(!req.body){
-        res.status(400).send("Cannot update user")
-        return;
-    }
-
-    const id = req.params.id
-
-    User.findByIdAndUpdate(id, { useFindAndModify:false })
-    .then(data => {
-        if(!data) {
-            res.status(404).send({
-                msg: `Cannot update User with id=${id}. Maybe it was not found`
-            })
-
-        }else res.status(201).send({ msg:"User was updated successfully"})
-    })
-    .catch(err => {
-        res.status(500).send({ msg: `Error updating User with id=${id}, Error: ${err}`})
-    })
-}
+// Controller for getting all recipes
+exports.getAllRecipes = async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
+    res.send(recipes);
+  } catch (error) {
+    res.status(500).send({ message: "Could not fetch recipes", error: error.message });
+  }
+};
