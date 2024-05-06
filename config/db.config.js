@@ -1,6 +1,6 @@
 
 module.exports = {
-    db: {
-        url: "mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook"
-    }
+    
+        url: "mongodb+srv://siyamthandamazokwana:3eFdoGwbHCQ46qVj@cluster0.rubvm32.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    
 };

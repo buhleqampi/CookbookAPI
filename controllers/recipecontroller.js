@@ -2,10 +2,10 @@ const Recipe = require("../models/recipeModel");
 const mongoose = require('mongoose');
 
 // Connect to MongoDB using provided URL
-mongoose.connect("mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// mongoose.connect("mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
 
 
 // Controller for creating a recipe

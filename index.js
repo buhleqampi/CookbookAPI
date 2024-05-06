@@ -3,13 +3,12 @@ const recipeRoutes = require("./routes/recipeRoutes");
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const connectionString = require("./config/db.config")
 
 // // Connect to MongoDB
-// mongoose.connect("mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-
+mongoose.connect(connectionString.url, {
+  useUnifiedTopology: true
+});
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
