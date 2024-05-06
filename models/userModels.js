@@ -1,5 +1,5 @@
 const userSchema = new mongoose.Schema({
-    userId: { type: String, required: true },
+    userId: { type: String, required: true }, //Remove this id.
     username: { type: String, required: true },
     emailAddres: { type: String, required: true },
     password: { type: String, required: true },
@@ -7,3 +7,5 @@ const userSchema = new mongoose.Schema({
     
 
 })
+
+//Rename the file to userModel

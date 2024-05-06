@@ -1,6 +1,8 @@
 const Recipe = require("../models/recipeModel");
 const mongoose = require('mongoose');
 
+
+//Remove this commented code
 // Connect to MongoDB using provided URL
 // mongoose.connect("mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook", {
 //   useNewUrlParser: true,
@@ -28,3 +30,6 @@ exports.getAllRecipes = async (req, res) => {
     res.status(500).send({ message: "Could not fetch recipes", error: error.message });
   }
 };
+
+//Rename this file to recipeController.js
+// Add the getoneRecipe method
