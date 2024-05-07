@@ -31,5 +31,16 @@ exports.getAllRecipes = async (req, res) => {
   }
 };
 
-//Rename this file to recipeController.js
-// Add the getoneRecipe method
+
+exports.getOneRecipe = async (req, res) => {
+  try {
+    const {id} = req.params
+    const recipe = await Recipe.findById(id);
+    if (!recipe) {
+      return res.status(404).send({ message: "Recipe not found" });
+    }
+    res.json(recipe);
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error", error: error.message });
+  }
+};
