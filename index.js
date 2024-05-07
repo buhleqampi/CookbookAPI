@@ -6,9 +6,7 @@ const PORT = process.env.PORT || 3000;
 const connectionString = require("./config/db.config")
 
 // // Connect to MongoDB
-mongoose.connect(connectionString.url, {
-  useUnifiedTopology: true
-});
+mongoose.connect(connectionString.url);
 
 const db = mongoose.connection;
 

@@ -1,15 +1,6 @@
 const Recipe = require("../models/recipeModel");
 const mongoose = require('mongoose');
 
-
-//Remove this commented code
-// Connect to MongoDB using provided URL
-// mongoose.connect("mongodb+srv://cookbook:aFXm9WeRwNUGByxT@cluster0.qqf2ubz.mongodb.net/?cookbook", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-
-
 // Controller for creating a recipe
 exports.createRecipe = async (req, res) => {
   try {
@@ -30,6 +21,24 @@ exports.getAllRecipes = async (req, res) => {
     res.status(500).send({ message: "Could not fetch recipes", error: error.message });
   }
 };
+// Controller for deleting 
+exports.deleteAllRecipes = async (req, res) => {
+  try {
+    await Recipe.deleteMany({});
+    res.send({ message: "All recipes deleted successfully" });
+  } catch (error) {
+    res.status(500).send({ message: "Could not delete recipes", error: error.message });
+  }
+};
 
-//Rename this file to recipeController.js
-// Add the getoneRecipe method
+
+// Controller for getting one recipe by ID
+exports.getOneRecipe = async (req, res) => {
+  try {
+    const {id} = params.id
+    const recipe = await Recipe.findById(id);
+    return recipe ? res.send(recipe) : res.status(404).send({ message: "Recipe not found" });
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error", error: error.message });
+  }
+};
