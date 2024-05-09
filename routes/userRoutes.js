@@ -10,6 +10,6 @@ router.put("/user/:userId", requireSignin, updateUser);
 router.delete("/user/:userId", requireSignin, deleteUser);
 
 // any routes containing :userId , our app will first excecute userbyid()
-router.param("userId", userById);
+// router.param("userId", userById);
 
 module.exports = router;
