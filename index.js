@@ -1,14 +1,19 @@
-const mongoose = require('mongoose');
-const recipeRoutes = require("./routes/recipeRoutes");
 const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const recipeRoutes = require("./routes/recipeRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const connectionString = require("./config/db.config")
 
 // // Connect to MongoDB
+<<<<<<< HEAD
 mongoose.connect(connectionString.url).then(() => {
   console.log("connected to db")
 })
+=======
+mongoose.connect(connectionString.url);
+>>>>>>> develop
 
 // const db = mongoose.connection;
 // console.log(connectionString.url)
@@ -17,7 +22,10 @@ mongoose.connect(connectionString.url).then(() => {
 //   console.log("Connected to MongoDB");
 // });
 
+app.use(cors())
+
 app.use(express.json());
+app.use(express.urlencoded({extended: false}))
 
 // Routes
 app.use("/recipes", recipeRoutes);
