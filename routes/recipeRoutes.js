@@ -9,4 +9,10 @@ router.post("/", recipeController.createRecipe); // change the first parameter t
 router.get("/", recipeController.getAllRecipes);  // change the first parameter to "/get-all-recipes"
 
 // Add the getOneRecipe router
+router.get("/get-one-recipe/:id", recipeController.getOneRecipe);
+
+// Delete All
+router.delete("/delete-all", recipeController.deleteAllRecipes);
+
+ 
 module.exports = router;
