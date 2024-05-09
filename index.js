@@ -7,20 +7,9 @@ const PORT = process.env.PORT || 3000;
 const connectionString = require("./config/db.config")
 
 // // Connect to MongoDB
-<<<<<<< HEAD
 mongoose.connect(connectionString.url).then(() => {
   console.log("connected to db")
 })
-=======
-mongoose.connect(connectionString.url);
->>>>>>> develop
-
-// const db = mongoose.connection;
-// console.log(connectionString.url)
-// db.on("error", console.error.bind(console, "MongoDB connection error:"));
-// db.once("open", () => {
-//   console.log("Connected to MongoDB");
-// });
 
 app.use(cors())
 
