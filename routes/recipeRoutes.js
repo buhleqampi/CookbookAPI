@@ -4,7 +4,7 @@ const recipeController = require('../controllers/recipeController');
 
 // Route for creating a recipe
 router.post("/add-recipe", recipeController.createRecipe); 
-// Route for getting all recipes
+// Route for getting all recipes 
 router.get("/get-all-recipes", recipeController.getAllRecipes); 
 
 // Add the getOneRecipe router
