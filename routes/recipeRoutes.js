@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const recipeController = require('../controllers/recipeController');
+const recipeController = require('../controllers/recipeControllers');
 
 // Route for creating a recipe
 router.post("/add-recipe", recipeController.createRecipe); 
