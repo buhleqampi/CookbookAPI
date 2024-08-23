@@ -20,6 +20,11 @@ app.use(express.urlencoded({extended: false}))
 // Routes
 app.use("/recipes", recipeRoutes);
 
+
+app.get("/", (req, res) => {
+  res.status(200).send("The server is running.....");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
