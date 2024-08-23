@@ -4,10 +4,11 @@ const cors = require('cors');
 const recipeRoutes = require("./routes/recipeRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
-const connectionString = require("./config/db.config")
+require('dotenv').config();
+// const connectionString = require("./config/db.config")
 
 // // Connect to MongoDB
-mongoose.connect(connectionString.url).then(() => {
+mongoose.connect(process.env.URL).then(() => {
   console.log("connected to db")
 })
 
